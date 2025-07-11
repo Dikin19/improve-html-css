@@ -23,34 +23,47 @@ header {
 /* !! Navbar */
 nav {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /* DIUBAH agar menu selalu di tengah */
     background-color: rgb(240, 192, 192);
-    height: 50px;
+    height: 60px;            /* Tinggi sedikit dinaikkan agar lebih enak dibaca */
     color: black;
-    margin-top: 10px;
-    border-radius: 10;
+    border-radius: 10px;     /* Diperbaiki: sebelumnya tidak ada satuan */
     margin: 10px;
-    flex: 1 100%;
+    padding: 0 20px;         /* DITAMBAHKAN: agar isi tidak mentok ke pinggir */
     position: sticky;
     top: 0;
-}    
+    z-index: 1000;           /* Agar navbar tetap di atas elemen lain saat discroll */
+    width: 100%;             /* DITAMBAHKAN: agar navbar isi penuh */
+    box-sizing: border-box;  /* DITAMBAHKAN: menghitung padding ke dalam */
+}
 
 nav ul {
     display: flex;
+    flex-wrap: wrap;             /* DITAMBAHKAN: agar jika sempit bisa turun */
     list-style: none;
-    width: 40%;
-    justify-content: space-between;
-}
-
-nav ul li a:hover {
-    color: white;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;                   /* Jarak antar menu */
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li a {
     color: black;
     text-decoration: none;
     font-size: 1em;
+    transition: color 0.3s ease;
+    border: 5px solid  white;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
 }
+
+
+nav ul li a:hover {
+    color: white;
+}
+
 
 .content {
     padding: 10px;
@@ -134,29 +147,98 @@ aside figure img {
     margin: 10px auto;
 }
 
-@media all and ( min-width: 800px) {
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+    }
+
+    nav ul li a {
+        width: 80%;               /* ✅ Supaya tidak penuh layar */
+        text-align: center;       /* ✅ Teks di tengah */
+        margin: 5px auto;         /* ✅ Jarak antar menu dan ke pinggir */
+        display: block;           /* ✅ Agar tiap menu di baris sendiri */
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;         /* DITAMBAHKAN */
+        gap: 10px;                      /* DITAMBAHKAN */
+        align-items: center;            /* DITAMBAHKAN */
+    }
+
+    .wrapper {
+        flex-direction: column;         /* DITAMBAHKAN */
+        align-items: center;            /* DITAMBAHKAN */
+    }
+
+    .profile {
+        width: 90%;                     /* DITAMBAHKAN */
+    }
+
+    .content h2 {
+        font-size: 22px;                /* DITAMBAHKAN */
+    }
+
+    .content p {
+        font-size: 12px;                /* DITAMBAHKAN */
+    }
+
+    .footer {
+        font-size: 10px;                /* DITAMBAHKAN */
+    }
+}
+
+/* Tablet (601px–1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    nav ul {
+        flex-wrap: wrap;                /* DITAMBAHKAN */
+        justify-content: center;        /* DITAMBAHKAN */
+    }
+
+    .wrapper {
+        flex-wrap: wrap;                /* DITAMBAHKAN */
+    }
+
+    .profile {
+        flex: 1 1 50%;                  /* DITAMBAHKAN */
+    }
+
+    .aside1,
+    .aside2 {
+        flex: 1 1 45%;                  /* DITAMBAHKAN */
+    }
+}
+
+/* Laptop/PC (≥1025px) */
+@media (min-width: 1025px) {
+    .wrapper {
+        justify-content: space-between; /* DITAMBAHKAN */
+    }
+
     .profile {
         flex: 3;
+        order: 2;
     }
 
     .aside1 {
         order: 1;
+        flex: 1;
     }
+
     .aside2 {
-        order: 2;
-    }
-    .profile {
-        order: 2;
-    }
-    .aside11{
-        order: 1;
-    }
-    .aside21{
-        order: 1;
-    }
-}
-@media all and ( min-width: 800px) {
-    .aside {
+        order: 3;
         flex: 1;
     }
 }
