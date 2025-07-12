@@ -2,11 +2,23 @@ body {
     font-family: "lilita one" sans-serif;
     padding: 0%;
     margin: 0%;
-    background-image: url(new.jpg)
+    background-image: url(new.jpg);
+    max-width: 100%;
 }
+/* font-family: "lilita one" sans-serif; → Mengatur jenis huruf utama di seluruh halaman. Jika "lilita one" tidak tersedia, akan pakai cadangan sans-serif.
+
+padding: 0%; → Menghilangkan ruang kosong di dalam elemen body. Sebenarnya cukup 0 saja, tidak perlu persen.
+
+margin: 0%; → Menghilangkan ruang kosong di luar elemen body.
+
+background-image: url(new.jpg); → Memberi gambar latar belakang seluruh halaman.
+
+max-width: 100%; → Membatasi lebar maksimal agar tidak melebihi lebar layar. */
 
 header {
-    display: inline;
+    display: block; 
+    /* akan memecah baris */
+    /* display : inline cocook untuk satu baris */
 }
 
 .jumbotron {
@@ -23,47 +35,61 @@ header {
 /* !! Navbar */
 nav {
     display: flex;
-    justify-content: space-evenly; /* DIUBAH agar menu selalu di tengah */
+    justify-content: space-evenly;
     background-color: rgb(240, 192, 192);
-    height: 60px;            /* Tinggi sedikit dinaikkan agar lebih enak dibaca */
+    height: 60px;
     color: black;
-    border-radius: 10px;     /* Diperbaiki: sebelumnya tidak ada satuan */
-    margin: 10px;
-    padding: 0 20px;         /* DITAMBAHKAN: agar isi tidak mentok ke pinggir */
+    border-radius: 20px;      /* Radius yang lebih besar agar sudut membulat jelas */
+    margin: 10px;        /* Margin atas-bawah 10px, kiri-kanan 20px */
+    padding: 0 20px;
     position: sticky;
     top: 0;
-    z-index: 1000;           /* Agar navbar tetap di atas elemen lain saat discroll */
-    width: 100%;             /* DITAMBAHKAN: agar navbar isi penuh */
-    box-sizing: border-box;  /* DITAMBAHKAN: menghitung padding ke dalam */
+    z-index: 1000;
+    box-sizing: border-box;
 }
+/* z-index: 1000; → Menentukan elemen tampil di atas elemen lain. Harus punya position.
+box-sizing: border-box; → Padding dan border dihitung dalam width/height elemen. Mudah dikontrol.    */
+
 
 nav ul {
     display: flex;
-    flex-wrap: wrap;             /* DITAMBAHKAN: agar jika sempit bisa turun */
+    flex-wrap: wrap;
     list-style: none;
     justify-content: center;
     align-items: center;
-    gap: 20px;                   /* Jarak antar menu */
+    gap: 20px;
     padding: 0;
     margin: 0;
 }
+/* display: flex; → Elemen <li> sejajar (horizontal).
+
+flex-wrap: wrap; → Bila sempit, menu akan turun ke baris baru.
+
+list-style: none; → Hilangkan bullet point bawaan list.
+
+justify-content: center; → Menu ditempatkan di tengah navbar.
+
+gap: 20px; → Jarak antar menu.
+
+padding & margin: 0; → Menghapus ruang default. */
 
 nav ul li a {
     color: black;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 20px;
     transition: color 0.3s ease;
     border: 5px solid  white;
     padding: 5px;
     margin: 10px;
     border-radius: 10px;
 }
+/* text-decoration: none; → Hilangkan garis bawah pada link.
 
+transition: color 0.3s ease; → Efek halus saat warna berubah. */
 
 nav ul li a:hover {
     color: white;
 }
-
 
 .content {
     padding: 10px;
@@ -92,6 +118,13 @@ nav ul li a:hover {
     flex: 1 100%;
     border-radius: 10px;
 }
+/* flex-flow:             row wrap; → Baris horizontal, bisa turun ke bawah.
+flex: 1 100%; →           Masing-masing anak .wrapper mengambil 100% lebar, tapi bisa menyesuaikan.
+display: flex;	        Aktifkan layout fleksibel horizontal/vertikal untuk anak elemen
+flex-flow: row wrap;	  Atur arah elemen ke kanan, dan turun ke bawah bila tidak muat
+flex: 1 100%;	          Awalnya 100% lebar, tapi bisa tumbuh/menciut sesuai ruang
+                          padding & margin	Atur jarak dalam dan antar elemen border-radius	Bikin sudut elemen jadi bulat text-align: center	Pusatkan teks di dalam anak elemen
+*/
 
 article p {
     text-align: left;
@@ -168,7 +201,9 @@ aside figure img {
         display: block;           /* ✅ Agar tiap menu di baris sendiri */
     }
 }
+/* Navbar dan menu akan ditumpuk secara vertikal.
 
+Menu diberi lebar 80% agar tidak full layar, dengan jarak rapi. */
 
 
 @media (max-width: 600px) {
@@ -199,6 +234,9 @@ aside figure img {
         font-size: 10px;                /* DITAMBAHKAN */
     }
 }
+/* .wrapper menjadi satu kolom.
+
+.profile menyesuaikan ukuran layar. */
 
 /* Tablet (601px–1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
@@ -220,6 +258,9 @@ aside figure img {
         flex: 1 1 45%;                  /* DITAMBAHKAN */
     }
 }
+/* Elemen fleksibel, bisa berdampingan.
+
+Menyesuaikan jumlah kolom agar rapi. */
 
 /* Laptop/PC (≥1025px) */
 @media (min-width: 1025px) {
@@ -242,6 +283,9 @@ aside figure img {
         flex: 1;
     }
 }
+/* Menata posisi elemen agar profile di tengah.
+
+aside1 dan aside2 di kiri-kanan (order: 1 dan 3). */
 
 .profile1 figure img {
     width: 300px;
